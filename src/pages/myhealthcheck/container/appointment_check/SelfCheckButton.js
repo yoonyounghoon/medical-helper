@@ -155,16 +155,20 @@ class SelfCheckButton extends Component {
                             id="standard-basic"
                             label="제목"
                             name="title"
+                            fullWidth
+                            variant="outlined"
                             value={title}
                             onChange={this.handleValueChange}
-                            style={{ width: 300 }}
                             />
                             <br />
                             <br />
                             <TextField
                             id="standard-basic"
                             label="처방내용"
-                            style={{ width: 600 }}
+                            rows="6"
+                            multiline
+                            fullWidth
+                            variant="filled"
                             name="solution"
                             value={solution}
                             onChange={this.handleValueChange}
@@ -174,7 +178,8 @@ class SelfCheckButton extends Component {
                             <TextField
                             id="standard-basic"
                             label="교수이름"
-                            style={{ width: 100 }}
+                            fullWidth
+                            variant="outlined"
                             name="doctorName"
                             value={doctorName}
                             onChange={this.handleValueChange}
@@ -183,7 +188,7 @@ class SelfCheckButton extends Component {
                             <br />
                             {/* 아침 점심 저녁 toggle */}
                             <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel component="legend">Assign responsibility</FormLabel>
+                            <FormLabel component="legend">복용시간</FormLabel>
                                 <FormGroup>
                                 <FormControlLabel
                                     control={<Checkbox checked={breakfast} onChange={this.handleToggle('breakfast')} value={breakfast} />}
@@ -203,9 +208,11 @@ class SelfCheckButton extends Component {
                             <br />
                             <TextField
                             id="datetime-local"
-                            label="~까지"
+                            helperText="~까지"
                             type="date"
                             name="deadline"
+                            variant="outlined"
+                            style={{width:200}}
                             value={deadline}
                             onChange={this.handleValueChange}
                             />

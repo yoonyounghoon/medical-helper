@@ -10,7 +10,7 @@ class AppointmentCheck extends Component {
     [
       {
         id: 0,
-        hospital:"미정",
+        hospital:[],
         reserveDate: "2020-02-06",
         reserveTime: "21:00",
         status: "예약완료",
