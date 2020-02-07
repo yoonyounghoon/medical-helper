@@ -35,6 +35,7 @@ class AppointmentCheck extends Component {
     ],
 
   }
+  
   render() {
     const {items} = this.state;
     
