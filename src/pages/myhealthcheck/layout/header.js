@@ -11,6 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import { Button } from "@material-ui/core";
+
 
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -41,15 +43,27 @@ const Header = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            내 건강관리
-          </Typography>
+          <Grid item xs={11}>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              내 건강관리
+            </Typography>
+          </Grid>
+
+          <Grid item xs={1}>
+            {/* <Link to="/login" color="in"> */}
+            <Button color="inherit">로그인</Button>
+            {/* </Link>    */}
+            <Link to="/signIn" color="inherit">
+              <Button color="inherit">회원가입</Button>
+            </Link>   
+          </Grid>
+          
         </Toolbar>
       </AppBar>
     </div>

@@ -26,15 +26,12 @@ class MyHealthCheckMain extends Component {
                         spacing={10}
                     >
                         <Grid 
-                            item sm
+                            item sm xs={12}
                             direction="row"
                         >
-                            <Link to="/signIn">
-                                 <Button>회원가입</Button>
-                            </Link>
-                            {/* <Header /> */}
                             
-
+                                <Header/>
+                        
                         </Grid>    
 
 
