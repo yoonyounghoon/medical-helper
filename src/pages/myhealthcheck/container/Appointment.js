@@ -21,6 +21,7 @@ let yPos = 0;
 const Appointment = () => {
   const [symptom, setSympmtom] = useState("");
 
+
   const handleSypmtom = e => {
     setSympmtom(e.target.value);
   };

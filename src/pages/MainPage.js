@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { Route, Link } from "react-router-dom";
 import EmrSearchPage from "./emrsearch/EmrSearchPage";
+import LoginPage from "./LoginPage";
 
 const MainPage = () => {
   return (
@@ -18,7 +19,6 @@ const MainPage = () => {
           </Button>
         </Link>
       </div>
-
       <div>
        <Link to="/myhealthcheck">
           <Button

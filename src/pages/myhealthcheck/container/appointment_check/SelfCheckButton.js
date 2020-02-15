@@ -32,20 +32,38 @@ class SelfCheckButton extends Component {
         serverDate: this.props.serverDate,
         serverTime: this.props.serverTime,
         toggle: false, // false-> 예약완료, true->처방입력
+
         open: false, //처방입력 모달창 오픈 유무
+        treatopen: false, //처방내역보기 모달창 오픈 유무
     }
 
-    //모달창 열기
+    //처방입력 모달창 열기
     handleClickOpen = (e) => {
         this.setState({
             open: true,
         })
     }
-    //모달창 닫기
+    //처방입력 모달창 닫기
     handleClickClose = (e) => {
         this.setState({
             open: false,
         })
+    }
+
+    //처방내역 모달창 열기
+    handleClickTreatOpen = (e) => {
+        this.setState({
+            treatopen: true,
+        })
+        console.log(this.state.treatopen)
+    }
+    //처방내역 모달창 닫기
+    handleClickTreatClose = (e) => {
+        this.setState({
+            treatopen: false,
+        })
+        console.log(this.state.treatopen)
+
     }
 
     //모달창 완료 버튼 클릭 시 서버로 데이터 전송
@@ -135,12 +153,12 @@ class SelfCheckButton extends Component {
 
                 {/* 처방입력후 상태(처방)*/}
                 {status==="처방완료"&&
-                <Button variant="outlined" color="primary">
+                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                     처방내역
                 </Button>
                 }      
 
-                {/* 모달창 start */}
+                {/* 처방입력 모달창 start */}
                 <Dialog
                   open={this.state.open}
                   onClose={this.handleClickClose}
@@ -226,7 +244,7 @@ class SelfCheckButton extends Component {
 
                   </form>
               </Dialog>
-            {/* 모달창 end */}
+            {/* 처방입력 모달창 end */}
 
 
             </div>

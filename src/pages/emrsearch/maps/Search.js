@@ -54,54 +54,56 @@ const Search = ({ xPos, yPos }) => {
         정형외과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="외과" color="primary" onClick={onClick}>
         외과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="가정의학과" color="primary" onClick={onClick}>
         가정의학과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="신경외과" color="primary" onClick={onClick}>
         신경외과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="마취통증과" color="primary" onClick={onClick}>
         마취통증과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="성형외과" color="primary" onClick={onClick}>
         성형외과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="산부인과" color="primary" onClick={onClick}>
         산부인과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="안과" color="primary" onClick={onClick}>
         안과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="정신의학과" color="primary" onClick={onClick}>
         정신의학과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="비뇨기과" color="primary" onClick={onClick}>
         비뇨기과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="치과" color="primary" onClick={onClick}>
         치과
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="한의원" color="primary" onClick={onClick}>
         한의원
       </Button>
       &nbsp;
-      <Button variant="outlined" value="피부과" color="primary">
+      <Button variant="outlined" value="노인" color="primary" onClick={onClick}>
         노인
       </Button>
       {xPos},{yPos}
+      
+      {type}
     </div>
   );
 };

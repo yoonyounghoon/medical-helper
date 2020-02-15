@@ -2,6 +2,7 @@
   "name": "medical-helper-v2",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://13.209.74.29:8080",
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",

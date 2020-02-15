@@ -57,7 +57,6 @@ const LoginForm = () => {
   const onClick = async e => {
     // 새로고침 방지
     e.preventDefault();
-
     // 데이터 푸쉬
     try {
       const response = await Axios.post(
@@ -73,6 +72,7 @@ const LoginForm = () => {
         }
       );
       const { status, data } = response;
+      const {history} = this.props;
       if (status === 200) {
         setForm({
           name: data.name,
@@ -81,6 +81,7 @@ const LoginForm = () => {
         });
         console.log(form);
       }
+      history.push(`/myhealthCheck`);
     } catch (error) {
       console.log(error);
     }
