@@ -1,87 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import HospitalList from "./HospitalList";
-
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 
 const Search = ({ xPos, yPos }) => {
-  // // 임시 데이터
-  // const datas = [
-  //   {
-  //     id: 33946,
-  //     name: "한빛내과의원",
-  //     location: null,
-  //     tel: "051-505-9922",
-  //     address: "부산광역시 동래구 아시아드대로 234 206호 (온천동, 반도보라상가)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47837",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   },
-  //   {
-  //     id: 16047,
-  //     name: "서면바른내과의원",
-  //     location: null,
-  //     tel: "051-805-4313",
-  //     address: "부산광역시 부산진구 중앙대로 700 3층 (부전동, 고려빌딩)",
-  //     homepage: null,
-  //     hospitalCodeName: "의원",
-  //     doctorCount: 1,
-  //     openDate: null,
-  //     generalDoctorCount: 0,
-  //     hospitalUrl: null,
-  //     internCount: 0,
-  //     postNo: "47295",
-  //     residentCount: 0,
-  //     specialDoctorCount: 1,
-  //     cityCodeName: "부산"
-  //   }
-  // ];
-
+  const [text, setText] = useState("");
   const [data, setData] = useState([]);
+  const [q1, setQ1] = useState("");
+  const [q2, setQ2] = useState("");
 
+  const onChange = e => {
+    setText(e.target.value);
+  };
+
+  // 기관명으로 검색하는 버튼 클릭시 동작하는 부분
   const onClick = async e => {
     // 새로고침 방지
     e.preventDefault();
@@ -89,153 +21,92 @@ const Search = ({ xPos, yPos }) => {
     // 데이터 가져오는 부분
     try {
       const response = await Axios.get(
-        `/medicalHelper/hospital/gps/name/${yPos}/${xPos}/${
-          e.target.value
-        }?pageNo=${1}`
+        `/medicalHelper/emergency/emergentList/${text}/${1}`
       );
-      console.log(response.data);
-      setData(response.data);
-      console.log(data)
-      
+      setData(response.data.body.items);
+      setText("");
     } catch (e) {
       console.log(e);
     }
   };
+
+  // 지역으로 검색하는 부분
+
+  const handleChangeQ1 = e => {
+    setQ1(e.target.value);
+  };
+  const handleChangeQ2 = e => {
+    setQ2(e.target.value);
+  };
+  const handleOnClick = async e =>{
+    // 새로고침 방지
+    e.preventDefault();
+
+    // 데이터 가져오는 부분
+    try {
+      const response = await Axios.get(
+        `/medicalHelper/emergency/emergentList/${q1}/${q2}/${1}`
+      );
+      setData(response.data.body.items);
+      setQ1('');
+      setQ2('');
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  
   return (
     <div>
-      {/* 검색창을 통해 병원리스트 출력
-       <input
-        type="text"
-        placeholder="검색할 병원을 입력하세요."
-        value={text}
-        onChange={onChange}
-        name="text"
-      />
-      <button variant="outlined" color="secondary" onClick={onClick}>
-        검색
-      </button> 
-      */}
-      <br />
-      <button variant="outlined" value="내과" color="primary" onClick={onClick}>
-        내과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="소아과"
-        color="primary"
-        onClick={onClick}
-      >
-        소아과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="피부과"
-        color="primary"
-        onClick={onClick}
-      >
-        피부과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="정형외과"
-        color="primary"
-        onClick={onClick}
-      >
-        정형외과
-      </button>
-      &nbsp;
-      <button variant="outlined" value="외과" color="primary" onClick={onClick}>
-        외과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="가정의학과"
-        color="primary"
-        onClick={onClick}
-      >
-        가정의학과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="신경외과"
-        color="primary"
-        onClick={onClick}
-      >
-        신경외과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="마취통증과"
-        color="primary"
-        onClick={onClick}
-      >
-        마취통증과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="성형외과"
-        color="primary"
-        onClick={onClick}
-      >
-        성형외과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="산부인과"
-        color="primary"
-        onClick={onClick}
-      >
-        산부인과
-      </button>
-      &nbsp;
-      <button variant="outlined" value="안과" color="primary" onClick={onClick}>
-        안과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="정신의학과"
-        color="primary"
-        onClick={onClick}
-      >
-        정신의학과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="비뇨기과"
-        color="primary"
-        onClick={onClick}
-      >
-        비뇨기과
-      </button>
-      &nbsp;
-      <button variant="outlined" value="치과" color="primary" onClick={onClick}>
-        치과
-      </button>
-      &nbsp;
-      <button
-        variant="outlined"
-        value="한의원"
-        color="primary"
-        onClick={onClick}
-      >
-        한의원
-      </button>
-      &nbsp;
-      <button variant="outlined" value="노인" color="primary" onClick={onClick}>
-        노인
-      </button>
-      <hr/>
+      <form>
+        이름으로 검색: &nbsp;
+        <input
+          type="text"
+          placeholder="검색할 병원을 입력하세요."
+          value={text}
+          onChange={onChange}
+          name="text"
+        />
+        <button variant="outlined" color="secondary" onClick={onClick}>
+          검색
+        </button>
+      </form>
+      <br/>
+      지역으로 검색{" "}
+      <form>
+        <InputLabel >
+          시/도
+        </InputLabel>
+        <Select value={q1} onChange={handleChangeQ1} autoWidth="true">
+          <MenuItem value="서울특별시">서울특별시</MenuItem>
+          <MenuItem value="부산광역시">부산광역시</MenuItem>
+          <MenuItem value="대구광역시">대구광역시</MenuItem>
+          <MenuItem value="인천광역시">인천광역시</MenuItem>
+          <MenuItem value="광주광역시">광주광역시</MenuItem>
+          <MenuItem value="대전광역시">대전광역시</MenuItem>
+          <MenuItem value="울산광역시">울산광역시</MenuItem>
+          <MenuItem value="세종특별자치시">세종특별자치시</MenuItem>
+          <MenuItem value="경기도">경기도</MenuItem>
+          <MenuItem value="강원도">강원도</MenuItem>
+          <MenuItem value="충청북도">충청북도</MenuItem>
+          <MenuItem value="충청남도">충청남도</MenuItem>
+          <MenuItem value="전라북도">전라북도</MenuItem>
+          <MenuItem value="전라남도">전라남도</MenuItem>
+          <MenuItem value="경상북도">경상북도</MenuItem>
+          <MenuItem value="경상남도">경상남도</MenuItem>
+        </Select>
 
+        <InputLabel >
+          시/군/구
+        </InputLabel>
+        <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
+          <MenuItem value="마포구">마포구</MenuItem>
+          <MenuItem value="종로구">종로구</MenuItem>
+        </Select>
+        <button onClick={handleOnClick}>찾기</button>
+      </form>
+      <br />
+      병원목록
+      <hr />
       <HospitalList data={data} />
     </div>
   );

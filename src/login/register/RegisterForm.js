@@ -52,6 +52,7 @@ const RegisterForm = () => {
     address: ""
   });
 
+
   const { email, password, name, birth, phone, address, sex } = form;
 
   const onChange = e => {
@@ -230,8 +231,8 @@ const RegisterForm = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+            <Link href="/login" >
+                {"Don't have an account? SignIn"} 
               </Link>
             </Grid>
           </Grid>

@@ -1,75 +1,225 @@
 import React, { useEffect, useState } from "react";
-import { Input, TextField, Button } from "@material-ui/core";
 import Axios from "axios";
+import {
+  Grid,
+  Table,
+  TableBody,
+  Typography,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import { useHistory } from "react-router-dom";
 
 const MyProfile = () => {
-  const [email,setEmail] = useState('');
-  const [name,setName] = useState('');
-  const [phone,setPhone] = useState('');
-  const [address,setAddress] = useState('');
-  const [birthday,setBirthday] = useState('');
-  
-  // 회원정보 받아오기
-   useEffect(() => {
-    // async를 사용하는 함수 따로 선언
-    const fetchData = async () => {
-      try {
+  let history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birth, setBirth] = useState("");
+  const [sex, setSex] = useState("");
+  const [address, setAddress] = useState("");
+  const [open, setOpen] = useState(false);
 
-        // url 수정하기
-        const response = await Axios.get("url");
-        // set (resopnse.data)
-        setEmail(response.data.email);
-        setName(response.data.name);
-        setPhone(response.data.phone);
-        setAddress(response.data.address);
-        setBirthday(response.data.birthday);
+  const [rename, setRename] = useState("");
+
+  useEffect(() => {
+    const get = async () => {
+      try {
+        const response = await Axios.get("medicalHelper/sign", {
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        });
+        const { data } = response;
+        console.log(response);
+        setEmail(data.email);
+        setName(data.name);
+        setPhone(data.phone);
+        setBirth(data.birth);
+        setSex(data.sex);
+        setAddress(data.address);
+        setPassword(data.password);
       } catch (e) {
         console.log(e);
       }
-      fetchData();
     };
-  }, []);
-  
+    get();
+  });
 
-  // 임시 회원데이터
-  const data = {
-    email: "spawnnim@naver.com",
-    name: "윤영훈",
-    phone: "010-5229-3673",
-    address: "서울시 성산동",
-    birthday: "1996-01-08"
+  const handleOpen = e => {
+    setOpen(true);
+  };
+
+  const handleClose = e => {
+    setOpen(false);
+  };
+
+  const nameChange = e => {
+    setRename(e.target.value);
+  };
+
+  const handleComfirm = e => {
+    var con = window.confirm("정말 탈퇴하시겠습니까?");
+    if (con) {
+      const response = Axios.delete("/medicalHelper/sign", {
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      });
+      localStorage.clear();
+      history.push("/");
+    } else {
+      console.log("탈퇴안함");
+    }
+  };
+
+  const handleInfoClick = async e => {
+    // 일단쓰고시작
+    e.preventDafault();
+
+    // 수정한 데이터 보내기
+    try {
+      const response = await Axios.put(
+        "/medicalHelper/sign",
+        {
+          name: rename,
+          password,
+          address,
+          phone,
+          sex
+        },
+        {
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <div>
-      이메일 : <Input type="text" value={data.email} readOnly /> 
-      <br />
-      이 름 :{" "}
-      <Input
-        value={data.name}
-        readOnly
-      />
-      <br />
-      핸드폰 :{" "}
-      <Input
-        value={data.phone}
-        readOnly
-      />
-      <br />주 소 :{" "}
-      <Input
-        value={data.address}
-        readOnly
-      />
-      <br />
-      생년월일{" "}
-      <Input
-        value={data.birthday}
-        readOnly
-      />{" "}
-      <br />
-      <Button style={{ margin: 20 }} variant="contained" color="primary">
-        수정하기
-      </Button>
+      <Grid
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="flex-start"
+        spacing={3}
+      >
+        <Grid item xs={6}>
+          <Table size="small">
+            <TableBody>
+              <Typography variant="h6">회원정보</Typography>
+              <br />
+              <TableRow>
+                <TableCell align="center">이메일</TableCell>
+                <TableCell align="center">{email}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">이름</TableCell>
+                <TableCell align="center">{name}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">전화번호</TableCell>
+                <TableCell align="center">{phone}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">생년월일</TableCell>
+                <TableCell align="center">{birth}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">성별</TableCell>
+                <TableCell align="center">{sex}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">주소</TableCell>
+                <TableCell align="center">{address}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Grid>
+        <Button variant="contained" color="secondary" onClick={handleOpen}>
+          회원정보 수정하기
+        </Button>
+        &nbsp;&nbsp;&nbsp;
+        <Button variant="contained" color="secondary" onClick={handleComfirm}>
+          탈퇴하기
+        </Button>
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
+          <DialogTitle>회원정보 수정</DialogTitle>
+
+          <form onSubmit>
+            <DialogContent>
+              <br />
+              이름 :{"   "}
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="rename"
+                type="text"
+                label="name"
+                name="rename"
+                value={rename}
+                onChange={nameChange}
+              />
+              <br />
+              <br />
+              전화번호 :{"   "}
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="phone"
+                type="text"
+                label="phone"
+                name="phone"
+                value={phone}
+                // onChange={phoneChange}
+              />
+              <br />
+              <br />
+              주소 :{"   "}
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="address"
+                label="address"
+                type="text"
+                name="address"
+                value={address}
+                // onChange={addressChange}
+              />
+              <br />
+              <br />
+            </DialogContent>
+            <DialogActions>
+              <Button variant="outlined" color="primary" onClick={handleClose}>
+                취소
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                onClick={handleInfoClick}
+              >
+                수정하기
+              </Button>
+            </DialogActions>
+          </form>
+        </Dialog>
+      </Grid>
     </div>
   );
 };

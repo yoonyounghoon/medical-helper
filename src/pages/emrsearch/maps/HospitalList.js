@@ -6,7 +6,7 @@ const HospitalList = ({data}) => {
     return (
         <div>
             {data.map(data=>(
-                <HosipitalItem key={data.id} data={data}  />
+                <HosipitalItem key={data.hpid} data={data}   />
             ))}
            
         </div>

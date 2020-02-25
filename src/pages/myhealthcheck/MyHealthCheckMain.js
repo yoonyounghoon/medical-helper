@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import {Header,Body,Footer} from "./layout";
 import Grid from '@material-ui/core/Grid';
-import { Route } from "react-router-dom";
 
-import Appointment from "./container/Appointment"
-import Checkdetail from "./container/Checkdetail";
-import AppointmentCheck from "./container/appointment_check/AppointmentCheck";
 
 
 //내건강관리페이지의 메인홈페이지

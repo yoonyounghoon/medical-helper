@@ -21,7 +21,7 @@ class listItems extends Component {
    * index num 
    * 0 진료예약
    * 1 진료예약확인
-   * 2 진료내용
+   * 2 약국찾기
    * 3 내 회원정보
    */
   handleIndex = (index) => {
@@ -52,7 +52,7 @@ class listItems extends Component {
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
-            <ListItemText primary="진료내용" />
+            <ListItemText primary="약국찾기" />
           </ListItem>
         
           <ListItem onClick={() => this.handleIndex(3)} button>
