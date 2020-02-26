@@ -52,7 +52,6 @@ const RegisterForm = () => {
     address: ""
   });
 
-
   const { email, password, name, birth, phone, address, sex } = form;
 
   const onChange = e => {
@@ -90,8 +89,7 @@ const RegisterForm = () => {
           }
         }
       );
-      console.log("2");
-      console.log(response);
+      alert("회원가입이 완료되었습니다. 로그인페이지로 가서 로그인하세요");
     } catch (error) {
       alert(error);
       console.log(error);
@@ -106,8 +104,8 @@ const RegisterForm = () => {
       phone: "",
       address: "",
       sex: {
-        male: "male",
-        female: "female"
+        male: "남",
+        female: "여"
       }
     });
   };
@@ -231,9 +229,7 @@ const RegisterForm = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-            <Link href="/login" >
-                {"Don't have an account? SignIn"} 
-              </Link>
+              <Link href="/login">{"Don't have an account? SignIn"}</Link>
             </Grid>
           </Grid>
         </form>

@@ -51,7 +51,7 @@ const Header = () => {
           </Grid>
           <Grid itme xs={1}>
             <Link href="/" color="inherit"> 
-              <Button color="inherit" onClick={handleLogout}>로그아웃</Button>
+              <Button variant="contained" color="secondary" onClick={handleLogout}>로그아웃</Button>
               </Link>
           </Grid>
           

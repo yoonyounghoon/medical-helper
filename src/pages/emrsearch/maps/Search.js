@@ -99,6 +99,7 @@ const Search = ({ xPos, yPos }) => {
           시/군/구
         </InputLabel>
         <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
+          
           <MenuItem value="마포구">마포구</MenuItem>
           <MenuItem value="종로구">종로구</MenuItem>
         </Select>

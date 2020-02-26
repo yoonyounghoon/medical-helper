@@ -80,14 +80,13 @@ const LoginForm = () => {
         console.log(data);
 
         setIsLogin(true);
-        
+
         // 토큰 저장
         var token = response.data.token;
         localStorage.setItem("token", token);
-        localStorage.setItem("name",data.name)
+        localStorage.setItem("name", data.name);
 
         // 페이지 이동하는 부분 구현해야함.
-        
       }
     } catch (error) {
       console.log(error);
@@ -99,11 +98,11 @@ const LoginForm = () => {
     });
   };
 
-  useEffect (() =>{
-    if(isLogin){
-        history.push("/myhealthcheck")
-      }
-  })
+  useEffect(() => {
+    if (isLogin) {
+      history.push("/myhealthcheck");
+    }
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -140,16 +139,16 @@ const LoginForm = () => {
             onChange={onChange}
           />
           <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={onClick}
-            >
-              Sign In
-            </Button>
-        
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={onClick}
+          >
+            Sign In
+          </Button>
+
           <Grid container>
             <Grid item>
               <Link href="/register">{"Don't have an account? SignUp"}</Link>

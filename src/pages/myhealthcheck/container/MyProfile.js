@@ -28,6 +28,8 @@ const MyProfile = () => {
   const [open, setOpen] = useState(false);
 
   const [rename, setRename] = useState("");
+  const [rephone, setRephone] = useState("");
+  const [readdress, setReaddress] = useState("");
 
   useEffect(() => {
     const get = async () => {
@@ -64,7 +66,13 @@ const MyProfile = () => {
   const nameChange = e => {
     setRename(e.target.value);
   };
-
+  const phoneChange = e => {
+    setRephone(e.target.value);
+  };
+  const addressChange = e => {
+    setAddress(e.target.value);
+  };
+  
   const handleComfirm = e => {
     var con = window.confirm("정말 탈퇴하시겠습니까?");
     if (con) {
@@ -81,9 +89,6 @@ const MyProfile = () => {
   };
 
   const handleInfoClick = async e => {
-    // 일단쓰고시작
-    e.preventDafault();
-
     // 수정한 데이터 보내기
     try {
       const response = await Axios.put(
@@ -91,8 +96,8 @@ const MyProfile = () => {
         {
           name: rename,
           password,
-          address,
-          phone,
+          address : readdress,
+          phone : rephone,
           sex
         },
         {
@@ -101,7 +106,8 @@ const MyProfile = () => {
           }
         }
       );
-      console.log(response.data);
+      alert("수정완료되었습니다.");
+      history.push("/myhealthcheck");
     } catch (e) {
       console.log(e);
     }
@@ -148,7 +154,7 @@ const MyProfile = () => {
             </TableBody>
           </Table>
         </Grid>
-        <Button variant="contained" color="secondary" onClick={handleOpen}>
+        <Button variant="contained" color="primary" onClick={handleOpen}>
           회원정보 수정하기
         </Button>
         &nbsp;&nbsp;&nbsp;
@@ -158,7 +164,7 @@ const MyProfile = () => {
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
           <DialogTitle>회원정보 수정</DialogTitle>
 
-          <form onSubmit>
+          <form>
             <DialogContent>
               <br />
               이름 :{"   "}
@@ -185,7 +191,7 @@ const MyProfile = () => {
                 label="phone"
                 name="phone"
                 value={phone}
-                // onChange={phoneChange}
+               onChange={phoneChange}
               />
               <br />
               <br />
@@ -199,7 +205,7 @@ const MyProfile = () => {
                 type="text"
                 name="address"
                 value={address}
-                // onChange={addressChange}
+               onChange={addressChange}
               />
               <br />
               <br />
