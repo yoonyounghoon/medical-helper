@@ -39,10 +39,10 @@ class AppointmentCheckList extends Component {
                     {items.map(row => (
                         <TableRow>
                         <TableCell component="th" scope="row">{row.symptom}</TableCell>
-                        <TableCell align="center">{row.hospital}</TableCell>
+                        <TableCell align="center">{row.hospital.name}</TableCell>
                         <TableCell align="center">{row.reserveDate}</TableCell>
                         <TableCell align="center">{row.reserveTime}</TableCell>
-                        <TableCell align="center"><SelfCheckButton status={row.status} serverDate={row.reserveDate} serverTime={row.reserveTime}/></TableCell>
+                        <TableCell align="center"><SelfCheckButton reservationId={row.id} status={row.status} serverDate={row.reserveDate} serverTime={row.reserveTime}/></TableCell>
                         </TableRow>
                     ))}
 

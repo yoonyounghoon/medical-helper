@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import MyHealthCheckMain from "./pages/myhealthcheck/MyHealthCheckMain";
 import EmrSearchPage from "./pages/emrsearch/EmrSearchPage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./login/LoginPage";
 import RegisterPage from "./login/register/RegisterForm";
 
 function App() {
