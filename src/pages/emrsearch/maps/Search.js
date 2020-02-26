@@ -40,9 +40,12 @@ const Search = ({ xPos, yPos }) => {
 
   const handleChangeQ1 = e => {
     setQ1(e.target.value);
+    console.log("setQ1"+q1)
+
   };
   const handleChangeQ2 = e => {
     setQ2(e.target.value);
+    console.log("setQ2"+q2)
   };
 
   const handleOnClick = async e => {
@@ -99,7 +102,10 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="충청북도">충청북도</MenuItem>>
         </Select>{" "}
         &nbsp; 구/군/읍/면{" "}
-        <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
+   
+          {q1 === '강원도' &&
+          <>
+          <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>강원도</ListSubheader>
           <MenuItem value="홍천군">홍천군</MenuItem>
           <MenuItem value="횡성군">횡성군</MenuItem>
@@ -111,7 +117,13 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="양구군">양구군</MenuItem>
           <MenuItem value="인제군">인제군</MenuItem>
           <MenuItem value="고성군">고성군</MenuItem>
+          
+          </Select>
+          </>}
 
+          {q1 === '경기도' &&
+          <>
+          <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>경기도</ListSubheader>
           <MenuItem value="가평군">가평군</MenuItem>
           <MenuItem value="고양시">고양시</MenuItem>
@@ -143,7 +155,13 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="포천시">포천시</MenuItem>
           <MenuItem value="하남시">하남시</MenuItem>
           <MenuItem value="화성시">화성시</MenuItem>
+          
+          </Select>
+          </>}
 
+          {q1 === '경상남도' &&
+          <>
+          <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>경상남도</ListSubheader>
           <MenuItem value="함안군">함안군</MenuItem>
           <MenuItem value="거창군">거창군</MenuItem>
@@ -155,7 +173,14 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="함양군">함양군</MenuItem>
           <MenuItem value="산청군">산청군</MenuItem>
           <MenuItem value="의령군">의령군</MenuItem>
+          
+          </Select>
 
+          </>}
+
+          {q1 === '경상북도' &&
+          <>
+           <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>경상북도</ListSubheader>
           <MenuItem value="군위군">군위군</MenuItem>
           <MenuItem value="의성군">의성군</MenuItem>
@@ -170,14 +195,26 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="봉화군">봉화군</MenuItem>
           <MenuItem value="울진군">울진군</MenuItem>
           <MenuItem value="울릉군">울릉군</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '광주광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>광주광역시</ListSubheader>
           <MenuItem value="광산구">광산구</MenuItem>
           <MenuItem value="남구">남구</MenuItem>
           <MenuItem value="동구">동구</MenuItem>
           <MenuItem value="북구">북구</MenuItem>
           <MenuItem value="서구">서구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '대구광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>대구광역시</ListSubheader>
           <MenuItem value="남구">남구</MenuItem>
           <MenuItem value="달서구">달서구</MenuItem>
@@ -187,14 +224,26 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="서구">서구</MenuItem>
           <MenuItem value="수성구">수성구</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '대전광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>대전광역시</ListSubheader>
           <MenuItem value="대덕구">대덕구</MenuItem>
           <MenuItem value="동구">동구</MenuItem>
           <MenuItem value="서구">서구</MenuItem>
           <MenuItem value="유성구">유성구</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '부산광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>부산광역시</ListSubheader>
           <MenuItem value="강서구">강서구</MenuItem>
           <MenuItem value="금정구">금정구</MenuItem>
@@ -211,7 +260,13 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="영도구">영도구</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
           <MenuItem value="해운대구">해운대구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '서울특별시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true"> 
           <ListSubheader>서울특별시</ListSubheader>
           <MenuItem value="강남구">강남구</MenuItem>
           <MenuItem value="강동구">강동구</MenuItem>
@@ -236,7 +291,13 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="종로구">종로구</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
           <MenuItem value="중랑구">중랑구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '세종특별자치시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>세종특별자치시</ListSubheader>
           <MenuItem value="고운동">고운동</MenuItem>
           <MenuItem value="금남면">금남면</MenuItem>
@@ -257,14 +318,26 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="조치원읍">조치원읍</MenuItem>
           <MenuItem value="종촌동">종촌동</MenuItem>
           <MenuItem value="한솔동">한솔동</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '울산광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>울산광역시</ListSubheader>
           <MenuItem value="남구">남구</MenuItem>
           <MenuItem value="동구">동구</MenuItem>
           <MenuItem value="북구">북구</MenuItem>
           <MenuItem value="울주군">울주군</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
+          </Select>
 
+          </>}
+
+          {q1 === '인천광역시' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>인천광역시</ListSubheader>
           <MenuItem value="강화군">강화군</MenuItem>
           <MenuItem value="계양구">계양구</MenuItem>
@@ -276,7 +349,12 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="연수구">연수구</MenuItem>
           <MenuItem value="옹진군">옹진군</MenuItem>
           <MenuItem value="중구">중구</MenuItem>
+          </Select>
+          </>}
 
+          {q1 === '전라남도' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>전라남도</ListSubheader>
           <MenuItem value="담양군">담양군</MenuItem>
           <MenuItem value="곡성군">곡성군</MenuItem>
@@ -295,7 +373,12 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="완도군">완도군</MenuItem>
           <MenuItem value="진도군">진도군</MenuItem>
           <MenuItem value="신안군">신안군</MenuItem>
+          </Select>
+          </>}
 
+          {q1 === '전라북도' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>전라북도</ListSubheader>
           <MenuItem value="안주군">안주군</MenuItem>
           <MenuItem value="고창군">고창군</MenuItem>
@@ -305,11 +388,21 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="진안군">진안군</MenuItem>
           <MenuItem value="무주군">무주군</MenuItem>
           <MenuItem value="장수군">장수군</MenuItem>
+          </Select>
+          </>}
 
+          {q1 === '제주특별자치도' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>제주특별자치도</ListSubheader>
           <MenuItem value="서귀포시">서귀포시</MenuItem>
           <MenuItem value="제주시">제주시</MenuItem>
+          </Select>
+          </>}
 
+          {q1 === '충청남도' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>충청남도</ListSubheader>
           <MenuItem value="금산군">금산군</MenuItem>
           <MenuItem value="부여군">부여군</MenuItem>
@@ -318,7 +411,13 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="홍성군">홍성군</MenuItem>
           <MenuItem value="예산군">예산군</MenuItem>
           <MenuItem value="태안군">태안군</MenuItem>
+          
+          </Select>
+          </>}
 
+          {q1 === '충청북도' &&
+          <>
+            <Select value={q2} onChange={handleChangeQ2} autoWidth="true">
           <ListSubheader>충청북도</ListSubheader>
           <MenuItem value="보은군">보은군</MenuItem>
           <MenuItem value="옥천군">옥천군</MenuItem>
@@ -328,7 +427,10 @@ const Search = ({ xPos, yPos }) => {
           <MenuItem value="괴산군">괴산군</MenuItem>
           <MenuItem value="음성군">음성군</MenuItem>
           <MenuItem value="단양군">단양군</MenuItem>
-        </Select>
+          </Select>
+          </>}
+
+
         <button onClick={handleOnClick}>찾기</button>
       </form>
       <br />

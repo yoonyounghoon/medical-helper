@@ -4,11 +4,13 @@ import HospitalList from "./HospitalList";
 import HospitalForm from "./HospitalForm";
 
 import Grid from '@material-ui/core/Grid';
+import { Typography } from "@material-ui/core";
 
 
 const Appointment = ({ xPos, yPos }) => {
 
   const [data, setData] = useState([]);
+  const [type, setType] = useState();
 
   const onClick = async e => {
     // 새로고침 방지
@@ -16,6 +18,8 @@ const Appointment = ({ xPos, yPos }) => {
 
     // 데이터 가져오는 부분
     try {
+      setType(e.target.value);
+
       const response = await Axios.get(
         `/medicalHelper/hospital/gps/name/${yPos}/${xPos}/${
           e.target.value
@@ -162,7 +166,8 @@ const Appointment = ({ xPos, yPos }) => {
         </Grid>
         <Grid >
           <br/>
-          <HospitalList data={data} /> 
+          {type? <HospitalList data={data} /> : <Typography h1 color="primary">병원유형을 먼저 선택해주세요!</Typography> }
+          
         </Grid>
 
     </div>
